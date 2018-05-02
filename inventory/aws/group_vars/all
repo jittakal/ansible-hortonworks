@@ -24,7 +24,7 @@ cloud_config:
       description: "SSH and inter-nodes access - {{ cluster_name }}"
 
 nodes:
-  - role: "hdp-singlenode"
+  - role: "hdf-singlenode"
     count: 1
     image: ami-4fffc834                                            # ami-7d50491b # Amazon Linux AMI 2017.03.1 in eu-west-1
     type: r4.xlarge
