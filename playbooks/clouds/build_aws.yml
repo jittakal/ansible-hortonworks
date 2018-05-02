@@ -72,7 +72,7 @@
       ec2_key:
         region: "{{ cloud_config.region }}"
         name: "{{ cloud_config.ssh.keyname }}"
-        key_material: "{{ lookup('file', cloud_config.ssh.publickey) }}"
+        key_material: "/var/lib/awx/.ssh/id_rsa.pub"
         state: present
         wait: yes
 
