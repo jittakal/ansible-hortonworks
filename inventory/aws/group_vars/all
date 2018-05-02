@@ -1,7 +1,7 @@
 ---
 cloud_config:
-  region: 'eu-west-1'
-  zone: 'eu-west-1a'
+  region: 'us-east-1'
+  zone: 'us-east-1a'
   vpc_name: "{{ cluster_name }}-vpc"
   vpc_cidr: '10.0.0.0/16'
   subnet_name: '{{ cluster_name }}-subnet'
@@ -24,20 +24,20 @@ cloud_config:
       description: "SSH and inter-nodes access - {{ cluster_name }}"
 
 nodes:
-  - role: "hdp-master"
+  - role: "hdp-singlenode"
     count: 1
-    image: ami-7d50491b                                            # Amazon Linux AMI 2017.03.1 in eu-west-1
-    type: r3.xlarge
+    image: ami-4fffc834                                            # ami-7d50491b # Amazon Linux AMI 2017.03.1 in eu-west-1
+    type: r4.xlarge
     public_ip: true
     security_groups: default_cluster_access,ambari_access
     root_volume:
       ebs: true                                                    # non-EBS root volumes are not supported at the moment
       type: gp2
-      size: 15
+      size: 80
     ambari_server: true
 
   - role: "hdp-slave"
-    count: 3
+    count: 0
     image: ami-7d50491b                                            # Amazon Linux AMI 2017.03.1 in eu-west-1
     type: r3.large
     public_ip: true

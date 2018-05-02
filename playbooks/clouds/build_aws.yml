@@ -24,6 +24,8 @@
         resource_tags:
           Name: "{{ cloud_config.subnet_name }}"
         state: present
+        wait: yes
+        wait_timeout: 600
       register: cluster_subnet
 
     - name: Add an Internet Gateway to the VPC
