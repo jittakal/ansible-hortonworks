@@ -14,6 +14,12 @@
         name: "{{ cloud_config.vpc_name }}"
         state: present
       register: cluster_vpc
+      
+    - name: get the username running the deploy
+      local_action: command whoami
+      register: username_on_the_host
+
+    - debug: var=username_on_the_host      
 
     - name: Create the Subnet
       ec2_vpc_subnet:
