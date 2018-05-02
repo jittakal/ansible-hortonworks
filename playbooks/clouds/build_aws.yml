@@ -19,7 +19,10 @@
       local_action: command whoami
       register: username_on_the_host
 
-    - debug: var=username_on_the_host      
+    - debug: var=username_on_the_host
+    
+    - name: debug through lookup on env
+      debug: var="{{ lookup('env','HOME') }}"
 
     - name: Create the Subnet
       ec2_vpc_subnet:
